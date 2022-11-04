@@ -1,15 +1,25 @@
-/******************************************************************************
+/*
 
-                              Online C++ Compiler.
-               Code, Compile, Run and Debug C++ program online.
-Write your code in this editor and press "Run" button to compile and execute it.
+There is an array of n non-negative integers, arr. In one operation, some positive integer x is chosen and 1 subtracted from all the numbers of 
+the array which are greater than or equal to x. Find the number of different final arrays possible after the operation is applied 0 or more times.
+Return the answer modulo (10^9 + 7).
 
-*******************************************************************************/
+Note:
+ Different values of x can be chosen for different operations.
+ Two final arrays a and b are considered different if there is at least one index i such that a[i] != b[i]
+ 
+ 
+Constraints:
+ 1 <= n <= 10^5
+ 0 <= arr[i] <= 10^5
+
+*/
 
 #include <bits/stdc++.h>
 using namespace std;
 const int E = 100001;
 const long long mod = 1000000007;
+
 long long sum(vector<long long>::iterator start, vector<long long>::iterator end){
     long long res = 0;
     while(start != end){
@@ -21,6 +31,7 @@ long long sum(vector<long long>::iterator start, vector<long long>::iterator end
     return res;
 }
 
+// O(n^2)
 long long naive(vector<int> arr){
     int n  = arr.size();
     sort(arr.begin(), arr.end());
@@ -50,6 +61,8 @@ long long naive(vector<int> arr){
     return res;
 }
 
+
+// O(nlogn)
 long long optimal(vector<int> arr){
     long long res = 1ll;
     sort(arr.begin(), arr.end());
